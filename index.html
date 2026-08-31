@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Secret Library — Nadine's Birthday</title>
-
   <style>
     :root {
       --bg-dark: #0d0805;
@@ -36,19 +35,6 @@
       position: relative;
     }
 
-    .library-bg {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(255, 140, 0, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(229, 179, 60, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(229, 179, 60, 0.08) 0%, transparent 50%),
-        linear-gradient(to bottom, #070403, var(--wood-dark));
-      z-index: -2;
-    }
-
     canvas#particles {
       position: fixed;
       top: 0;
@@ -59,597 +45,472 @@
       z-index: 1;
     }
 
-    /* HEADER */
-
-    header {
+    .header {
       width: 100%;
-      max-width: 900px;
-      padding: 20px;
+      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(229, 179, 92, 0.3);
-      margin-bottom: 20px;
       z-index: 10;
+      background: linear-gradient(to bottom, rgba(13, 8, 5, 0.9), transparent);
     }
 
-    .nav-links {
-      font-size: 0.8rem;
+    .header-nav {
+      display: flex;
+      gap: 20px;
+      font-size: 0.75rem;
       letter-spacing: 3px;
       color: var(--text-muted);
       text-transform: uppercase;
-      display: flex;
-      gap: 20px;
     }
 
-    /* OWL REMOVED COMPLETELY */
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+    .owl-icon {
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 0 8px rgba(229, 179, 92, 0.4));
     }
 
-    .access-tag {
-      font-size: 0.75rem;
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      padding: 5px 12px;
-      border-radius: 4px;
-      background: rgba(26, 15, 10, 0.6);
+    .owl-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .access-badge {
+      border: 1px solid var(--accent-amber);
+      padding: 6px 14px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
       color: var(--accent-gold);
-      letter-spacing: 1px;
+      border-radius: 4px;
+      background: rgba(26, 16, 10, 0.6);
     }
 
-    /* MAIN */
-
-    main {
-      width: 100%;
-      max-width: 800px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .container {
+      z-index: 10;
+      width: 90%;
+      max-width: 650px;
+      margin: 40px auto;
       text-align: center;
-      z-index: 2;
-    }
-
-    .status-panel {
-      background: rgba(26, 15, 10, 0.85);
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      box-shadow:
-        0 0 30px rgba(0, 0, 0, 0.9),
-        inset 0 0 15px rgba(229, 179, 60, 0.1);
-      padding: 35px 25px;
+      background: rgba(20, 12, 7, 0.85);
+      border: 1px solid rgba(229, 179, 92, 0.25);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(212, 136, 40, 0.1);
+      padding: 40px 30px;
       border-radius: 8px;
-      width: 100%;
-      margin-bottom: 30px;
       backdrop-filter: blur(5px);
+      position: relative;
     }
 
-    .lock-icon {
-      font-size: 1.5rem;
+    .lock-symbol {
+      font-size: 1.8rem;
       color: var(--accent-amber);
       margin-bottom: 15px;
+      display: inline-block;
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px var(--accent-amber)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 10px var(--accent-gold)); }
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       letter-spacing: 4px;
-      color: var(--parchment);
-      text-transform: uppercase;
+      color: var(--accent-gold);
       margin-bottom: 10px;
-      font-weight: normal;
+      font-weight: 400;
+      text-transform: uppercase;
     }
 
-    .subtitle {
-      font-style: italic;
+    p.subtitle {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-style: italic;
       margin-bottom: 25px;
     }
 
-    .date-target {
-      font-size: 1.4rem;
-      color: var(--accent-gold);
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
-    /* COUNTDOWN */
-
-    .countdown-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 25px 0;
-    }
-
-    .count-box {
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      background: rgba(13, 7, 5, 0.7);
-      padding: 12px 18px;
-      border-radius: 6px;
-      min-width: 75px;
-    }
-
-    .count-number {
-      font-size: 1.8rem;
+    .target-date {
+      font-size: 1.3rem;
+      letter-spacing: 5px;
       color: var(--parchment);
-      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 30px 0;
+    }
+
+    .time-box {
+      border: 1px solid rgba(229, 179, 92, 0.3);
+      padding: 15px 5px;
+      background: rgba(13, 8, 5, 0.6);
+      border-radius: 4px;
+    }
+
+    .time-box .num {
+      font-size: 1.6rem;
+      color: var(--accent-gold);
+      display: block;
+      font-weight: 600;
+    }
+
+    .time-box .label {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 5px;
       display: block;
     }
 
-    .count-label {
+    .shelf-section {
+      margin-top: 30px;
+      border-top: 1px solid rgba(229, 179, 92, 0.2);
+      padding-top: 25px;
+    }
+
+    .shelf-title {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .book-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .book-btn {
+      background: rgba(35, 20, 12, 0.8);
+      border: 1px solid rgba(212, 136, 40, 0.3);
+      color: var(--parchment);
+      padding: 12px 18px;
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .book-btn:hover {
+      border-color: var(--accent-gold);
+      background: rgba(50, 28, 16, 0.9);
+      box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
+    }
+
+    .book-btn.locked-book {
+      border-color: var(--accent-gold);
+      background: rgba(60, 35, 18, 0.9);
+      font-weight: 600;
+    }
+
+    .reveal-box {
+      display: none;
+      background: rgba(25, 15, 9, 0.95);
+      border: 2px solid var(--accent-gold);
+      padding: 30px;
+      border-radius: 6px;
+      margin-top: 20px;
+      box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
+    }
+
+    .credential-field {
+      margin: 20px 0;
+      text-align: left;
+      background: rgba(13, 8, 5, 0.8);
+      padding: 12px 16px;
+      border: 1px solid rgba(229, 179, 92, 0.3);
+      border-radius: 4px;
+    }
+
+    .field-label {
       font-size: 0.65rem;
       letter-spacing: 2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 4px;
-      display: block;
-    }
-
-    .countdown-footer {
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      margin-top: 15px;
-      text-transform: uppercase;
-    }
-
-    /* UNLOCKED */
-
-    .unlocked-content {
-      display: none;
-      animation: fadeIn 1.5s ease-in-out forwards;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .credentials-box {
-      background: rgba(13, 7, 5, 0.9);
-      border: 2px solid var(--accent-gold);
-      padding: 25px;
-      border-radius: 8px;
-      margin: 25px 0;
-      text-align: left;
-    }
-
-    .cred-row {
-      margin-bottom: 15px;
-    }
-
-    .cred-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .cred-label {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
+      color: var(--accent-amber);
       display: block;
       margin-bottom: 5px;
     }
 
-    .cred-value {
-      font-size: 1.2rem;
-      color: var(--accent-gold);
-      font-family: monospace;
+    .field-value {
+      font-size: 1.1rem;
+      color: var(--parchment);
       letter-spacing: 1px;
+      font-family: monospace;
     }
 
-    .btn-action {
-      background: var(--accent-gold);
+    .action-btn {
+      background: var(--accent-amber);
       color: var(--bg-dark);
       border: none;
       padding: 14px 28px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      letter-spacing: 2px;
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      border-radius: 4px;
       cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
       text-decoration: none;
       display: inline-block;
-      margin-top: 15px;
-      transition: background 0.3s ease;
     }
 
-    .btn-action:hover {
-      background: #ffc15e;
+    .action-btn:hover {
+      background: var(--accent-gold);
+      box-shadow: 0 0 15px var(--accent-gold);
     }
 
-    /* BOOKS */
-
-    .desk-scene {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-      margin: 20px 0;
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .interactive-book {
-      background: linear-gradient(
-        135deg,
-        var(--wood-dark),
-        var(--bg-dark)
-      );
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      padding: 18px 25px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      flex: 1 1 200px;
-      max-width: 240px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .interactive-book:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(229, 169, 60, 0.25);
-      border-color: var(--accent-gold);
-    }
-
-    .book-title {
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      color: var(--parchment);
-      text-transform: uppercase;
-    }
-
-    /* FOOTER */
-
-    footer {
-      margin-top: auto;
-      padding: 30px;
-      font-size: 0.8rem;
+    .footer {
+      z-index: 10;
+      padding: 20px;
+      font-size: 0.7rem;
       letter-spacing: 3px;
       color: var(--text-muted);
       text-transform: uppercase;
-      z-index: 10;
     }
 
-    /* MODALS */
-
-    .modal-overlay {
+    .toast {
       position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-      padding: 20px;
-    }
-
-    .modal-card {
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
       background: var(--wood-dark);
       border: 1px solid var(--accent-gold);
-      padding: 30px;
-      border-radius: 8px;
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+      color: var(--parchment);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 100;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
     }
 
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.2rem;
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
     }
-
-    /* MOBILE */
 
     @media (max-width: 600px) {
-      header {
-        padding: 15px;
-      }
-
-      .nav-links {
-        font-size: 0.65rem;
-        letter-spacing: 2px;
-      }
-
-      .access-tag {
-        font-size: 0.6rem;
-        padding: 4px 8px;
-      }
-
-      main {
-        padding: 12px;
-      }
-
-      .status-panel {
-        padding: 25px 15px;
-      }
-
-      h1 {
-        font-size: 1.3rem;
-        letter-spacing: 3px;
-      }
-
-      .countdown-container {
-        gap: 6px;
-      }
-
-      .count-box {
-        min-width: 65px;
-        padding: 10px 6px;
-      }
-
-      .count-number {
-        font-size: 1.25rem;
-      }
-
-      .count-label {
-        font-size: 0.55rem;
-        letter-spacing: 1px;
-      }
-
-      .desk-scene {
-        gap: 10px;
-      }
-
-      .interactive-book {
-        max-width: 100%;
-      }
+      .container { width: 92%; padding: 25px 18px; }
+      h1 { font-size: 1.3rem; }
+      .countdown-grid { gap: 6px; }
+      .time-box .num { font-size: 1.2rem; }
     }
   </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
-  <div class="library-bg"></div>
   <canvas id="particles"></canvas>
 
-  <!-- MUSIC -->
-  <!-- IMPORTANT: keep sound.mp3 in the same folder as index.html -->
-  <audio id="birthdaySong" src="sound.mp3" loop preload="auto"></audio>
-
-  <!-- HEADER -->
-  <header>
-    <div class="nav-links">
-      <span>Library</span>
-      <span>Collection</span>
+  <div class="header">
+    <div class="header-nav">
+      <span>THE LIBRARY</span>
     </div>
 
-    <div class="header-right">
-      <div class="access-tag">17 OCT 2026</div>
-    </div>
-  </header>
+    <div class="owl-icon" id="owlToggle" title="Library Emblem">🦉</div>
 
-  <main>
+    <div class="access-badge">17 OCT 2026</div>
+  </div>
 
-    <!-- LOCKED SCREEN -->
-    <div class="status-panel" id="lockedState">
+  <div class="container" id="mainCard">
 
-      <div class="lock-icon">🔒</div>
+    <div id="lockedState">
 
-      <h1>The Library is Currently Closed</h1>
+      <div class="lock-symbol">🔒</div>
+
+      <h1>THE LIBRARY IS CURRENTLY CLOSED</h1>
 
       <p class="subtitle">
         Some stories aren’t meant to be read early.
       </p>
 
-      <div class="date-target">
+      <div class="target-date">
         17 OCTOBER 2026
       </div>
 
-      <div class="countdown-container">
+      <div class="countdown-grid">
 
-        <div class="count-box">
-          <span class="count-number" id="days">00</span>
-          <span class="count-label">Days</span>
+        <div class="time-box">
+          <span class="num" id="days">00</span>
+          <span class="label">Days</span>
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="hours">00</span>
-          <span class="count-label">Hours</span>
+        <div class="time-box">
+          <span class="num" id="hours">00</span>
+          <span class="label">Hours</span>
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="mins">00</span>
-          <span class="count-label">Minutes</span>
+        <div class="time-box">
+          <span class="num" id="mins">00</span>
+          <span class="label">Minutes</span>
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="secs">00</span>
-          <span class="count-label">Seconds</span>
+        <div class="time-box">
+          <span class="num" id="secs">00</span>
+          <span class="label">Seconds</span>
         </div>
 
       </div>
 
-      <div class="countdown-footer">
-        Come back when the library opens.
+      <div class="shelf-section">
+
+        <div class="shelf-title">
+          Library Archives
+        </div>
+
+        <div class="book-list">
+
+          <button class="book-btn locked-book"
+            onclick="triggerBook('NADINE — VOLUME I')">
+
+            <span>📖 NADINE — VOLUME I</span>
+            <span>🔒</span>
+
+          </button>
+
+          <button class="book-btn"
+            onclick="triggerBook('THE BOOK OF THINGS I NEVER TOLD YOU')">
+
+            <span>📚 THE BOOK OF THINGS I NEVER TOLD YOU</span>
+
+          </button>
+
+          <button class="book-btn"
+            onclick="triggerBook('RULES OF THE LIBRARY')">
+
+            <span>📜 RULES OF THE LIBRARY</span>
+
+          </button>
+
+        </div>
+
       </div>
 
     </div>
 
 
-    <!-- UNLOCKED BIRTHDAY SCREEN -->
-    <div class="status-panel unlocked-content" id="unlockedState">
+    <div class="reveal-box" id="unlockedState">
 
-      <div class="lock-icon" style="color: #4caf50;">
-        📖
+      <div style="font-size: 2rem; margin-bottom: 10px;">
+        ✨
       </div>
 
-      <h1>Welcome Back, Nadine</h1>
+      <h1>WELCOME BACK, NADINE</h1>
 
       <p class="subtitle">
         The library is open. You’ve waited long enough.
       </p>
 
-      <p style="
-        margin: 20px 0;
-        line-height: 1.6;
-        color: var(--parchment);
-      ">
-        Happy Birthday, Nadine! 🤍<br>
-        For the past year, I’ve been secretly writing letters to you.
-        Your mailbox awaits.
+      <p style="font-size: 0.95rem; margin: 20px 0; line-height: 1.6;">
+        For the past year, I’ve been secretly writing to you...
+        <br>
+        Your mailbox awaits. 🤍
       </p>
 
-      <div class="credentials-box">
+      <div class="credential-field">
 
-        <div class="cred-row">
-          <span class="cred-label">
-            Mailbox Address
-          </span>
+        <span class="field-label">
+          EMAIL ADDRESS
+        </span>
 
-          <span class="cred-value" id="dispEmail">
-            ...
-          </span>
-        </div>
-
-        <div class="cred-row">
-          <span class="cred-label">
-            Secret Password
-          </span>
-
-          <span class="cred-value" id="dispPass">
-            ...
-          </span>
-        </div>
+        <span class="field-value" id="emailVal">
+          dear.nadine@hotmail.com
+        </span>
 
       </div>
 
-      <a
-        href="https://outlook.live.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-action"
-      >
-        Enter the Mailbox
+      <div class="credential-field">
+
+        <span class="field-label">
+          PASSWORD
+        </span>
+
+        <span class="field-value" id="passVal">
+          Happybirthday
+        </span>
+
+      </div>
+
+      <a href="https://outlook.live.com/"
+         target="_blank"
+         class="action-btn">
+        ENTER THE MAILBOX
       </a>
-
-    </div>
-
-
-    <!-- BOOKS -->
-    <div class="desk-scene" id="deskScene">
-
-      <div
-        class="interactive-book"
-        onclick="openEgg(`Rules of the Library:
-
-1. Do not open anything before October 17.
-2. Rule #1 still applies.
-3. Stop looking for loopholes.
-4. Fine. You can have hot chocolate. ☕`)"
-      >
-        <span class="book-title">
-          📜 The Rules
-        </span>
-      </div>
-
-
-      <div
-        class="interactive-book"
-        onclick="openEgg(`The Book of Things I Never Told You:
-
-Not yet. 🕯️`)"
-      >
-        <span class="book-title">
-          📖 Secret Book
-        </span>
-      </div>
-
-
-      <div
-        class="interactive-book"
-        onclick="openEgg(`A Very Important Book:
-
-It is currently being very important somewhere else.`)"
-      >
-        <span class="book-title">
-          ✨ Volume I
-        </span>
-      </div>
-
-    </div>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer>
-    ✦ A SECRET IS WORTH WAITING FOR ✦
-  </footer>
-
-
-  <!-- EASTER EGG MODAL -->
-  <div class="modal-overlay" id="eggModal">
-
-    <div class="modal-card">
-
-      <span
-        class="modal-close"
-        onclick="closeModal('eggModal')"
-      >
-        &times;
-      </span>
-
-      <p
-        id="eggText"
-        style="
-          white-space: pre-line;
-          line-height: 1.6;
-          color: var(--parchment);
-        "
-      ></p>
 
     </div>
 
   </div>
 
+  <div class="footer">
+    ✦ A SECRET IS WORTH WAITING FOR ✦
+  </div>
+
+  <div class="toast" id="toastMsg">
+    Message goes here
+  </div>
+
+
+  <!-- YOUR SONG -->
+  <audio id="birthdaySong" src="sound.mp3" autoplay loop preload="auto"></audio>
+
 
   <script>
 
-    /* =====================================================
-       CREDENTIALS
-       ===================================================== */
+    // ==========================================
+    // SONG
+    // ==========================================
 
-    const _e = "ZGVhci5uYWRpbmVAaG90bWFpbC5jb20=";
-    const _p = "SGFwcHliaXJ0aGRheQ==";
+    const birthdaySong = document.getElementById("birthdaySong");
+
+    birthdaySong.volume = 1.0;
+
+    // Try to start the song immediately.
+    // Some browsers may block autoplay until the first
+    // interaction with the page.
+    window.addEventListener("load", () => {
+
+      birthdaySong.play().catch(() => {
+
+        // If the browser blocks autoplay, try again
+        // after the first interaction anywhere on the page.
+        const startSong = () => {
+
+          birthdaySong.play().catch(() => {});
+
+          document.removeEventListener("click", startSong);
+          document.removeEventListener("touchstart", startSong);
+        };
+
+        document.addEventListener("click", startSong, { once: true });
+        document.addEventListener("touchstart", startSong, { once: true });
+
+      });
+
+    });
 
 
-    /* =====================================================
-       TARGET DATE
-       OCTOBER 17, 2026 — MIDNIGHT
-       ===================================================== */
+    // ==========================================
+    // COUNTDOWN
+    // ==========================================
 
     const targetDate =
       new Date("October 17, 2026 00:00:00").getTime();
 
-
-    /* =====================================================
-       COUNTDOWN
-       ===================================================== */
 
     function updateCountdown() {
 
@@ -663,6 +524,7 @@ It is currently being very important somewhere else.`)"
         unlockLibrary();
 
         return;
+
       }
 
 
@@ -671,17 +533,20 @@ It is currently being very important somewhere else.`)"
           distance / (1000 * 60 * 60 * 24)
         );
 
+
       const hours =
         Math.floor(
           (distance % (1000 * 60 * 60 * 24))
           / (1000 * 60 * 60)
         );
 
+
       const minutes =
         Math.floor(
           (distance % (1000 * 60 * 60))
           / (1000 * 60)
         );
+
 
       const seconds =
         Math.floor(
@@ -701,6 +566,7 @@ It is currently being very important somewhere else.`)"
 
       document.getElementById("secs").innerText =
         String(seconds).padStart(2, "0");
+
     }
 
 
@@ -709,100 +575,112 @@ It is currently being very important somewhere else.`)"
     updateCountdown();
 
 
-    /* =====================================================
-       UNLOCK LIBRARY
-       ===================================================== */
+    // ==========================================
+    // UNLOCK
+    // ==========================================
 
     function unlockLibrary() {
-
-      /*
-        Hide EVERYTHING that belongs to the
-        countdown / locked state.
-      */
 
       document.getElementById("lockedState").style.display =
         "none";
 
 
-      /*
-        Hide the books too.
-        They disappear permanently when the countdown ends.
-      */
-
-      document.getElementById("deskScene").style.display =
-        "none";
-
-
-      /*
-        Show birthday screen.
-      */
-
       const unlocked =
         document.getElementById("unlockedState");
 
-      unlocked.style.display = "block";
+
+      unlocked.style.display =
+        "block";
 
 
-      /*
-        Reveal credentials.
-      */
+      document.getElementById("emailVal").innerText =
+        "dear.nadine@hotmail.com";
 
-      document.getElementById("dispEmail").innerText =
-        atob(_e);
 
-      document.getElementById("dispPass").innerText =
-        atob(_p);
+      document.getElementById("passVal").innerText =
+        "Happybirthday";
+
     }
 
 
-    /* =====================================================
-       EASTER EGG BOOKS
-       ===================================================== */
+    // ==========================================
+    // OWL TRIPLE CLICK
+    // ==========================================
 
-    function openEgg(text) {
+    // Kept exactly as in your original code.
 
-      document.getElementById("eggText").innerText =
-        text;
-
-      document.getElementById("eggModal").style.display =
-        "flex";
-    }
+    let clicks = 0;
 
 
-    function closeModal(id) {
+    document
+      .getElementById("owlToggle")
+      .addEventListener("click", () => {
 
-      document.getElementById(id).style.display =
-        "none";
-    }
+        clicks++;
 
 
-    /* =====================================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
-       ===================================================== */
+        if (clicks === 3) {
 
-    document.querySelectorAll(".modal-overlay").forEach(
-      overlay => {
+          clicks = 0;
 
-        overlay.addEventListener("click", function(event) {
 
-          if (event.target === overlay) {
+          const locked =
+            document.getElementById("lockedState");
 
-            overlay.style.display = "none";
+
+          if (locked.style.display === "none") {
+
+            locked.style.display =
+              "block";
+
+
+            document.getElementById("unlockedState")
+              .style.display = "none";
+
+          } else {
+
+            unlockLibrary();
 
           }
 
-        });
-
-      }
-    );
+        }
 
 
-    /* =====================================================
-       PARTICLES
-       ===================================================== */
+        setTimeout(() => clicks = 0, 1000);
+
+      });
+
+
+    // ==========================================
+    // BOOK FUNCTION
+    // ==========================================
+
+    function triggerBook(bookName) {
+
+      document.getElementById("toastMsg").innerText =
+        bookName + " is currently locked.";
+
+      document.getElementById("toastMsg")
+        .classList.add("show");
+
+
+      setTimeout(() => {
+
+        document.getElementById("toastMsg")
+          .classList.remove("show");
+
+      }, 2500);
+
+    }
+
+
+    // ==========================================
+    // PARTICLES
+    // ==========================================
 
     const canvas =
       document.getElementById("particles");
+
 
     const ctx =
       canvas.getContext("2d");
@@ -815,6 +693,7 @@ It is currently being very important somewhere else.`)"
 
       canvas.height =
         window.innerHeight;
+
     }
 
 
@@ -823,26 +702,34 @@ It is currently being very important somewhere else.`)"
       resizeCanvas
     );
 
+
     resizeCanvas();
 
 
     const particles =
       Array.from({ length: 35 }, () => ({
 
-        x: Math.random() * canvas.width,
+        x:
+          Math.random() *
+          canvas.width,
 
-        y: Math.random() * canvas.height,
+        y:
+          Math.random() *
+          canvas.height,
 
-        size: Math.random() * 4 + 2,
+        size:
+          Math.random() * 4 + 2,
 
-        speedY: Math.random() * 0.8 + 0.3,
+        speedY:
+          Math.random() * 0.8 + 0.3,
 
-        speedX: Math.random() * 0.4 - 0.2,
+        speedX:
+          Math.random() * 0.4 - 0.2,
 
         color:
           Math.random() > 0.5
-            ? "rgba(229, 169, 60, "
-            : "rgba(210, 105, 30, ",
+            ? "rgba(229, 179, 92, "
+            : "rgba(212, 136, 40, ",
 
         opacity:
           Math.random() * 0.6 + 0.2
@@ -867,26 +754,26 @@ It is currently being very important somewhere else.`)"
         p.x += p.speedX;
 
 
-        if (p.y > canvas.height) {
+        if (p.y > canvas.height)
           p.y = 0;
-        }
 
 
-        if (p.x > canvas.width) {
+        if (p.x > canvas.width)
           p.x = 0;
-        }
 
 
-        if (p.x < 0) {
+        if (p.x < 0)
           p.x = canvas.width;
-        }
 
 
         ctx.fillStyle =
-          p.color + p.opacity + ")";
+          p.color +
+          p.opacity +
+          ")";
 
 
         ctx.beginPath();
+
 
         ctx.arc(
           p.x,
@@ -896,6 +783,7 @@ It is currently being very important somewhere else.`)"
           Math.PI * 2
         );
 
+
         ctx.fill();
 
       });
@@ -904,89 +792,11 @@ It is currently being very important somewhere else.`)"
       requestAnimationFrame(
         animateParticles
       );
+
     }
 
 
     animateParticles();
-
-
-    /* =====================================================
-       MUSIC — sound.mp3
-       ===================================================== */
-
-    const birthdaySong =
-      document.getElementById("birthdaySong");
-
-
-    /*
-      Try to start the song immediately.
-
-      IMPORTANT:
-      Modern browsers, especially iPhone/Safari,
-      may block autoplay with sound until the visitor
-      interacts with the page.
-
-      The code below attempts autoplay and then retries
-      whenever the visitor first touches/clicks the page.
-    */
-
-    function startBirthdaySong() {
-
-      birthdaySong.volume = 1.0;
-
-      const playPromise =
-        birthdaySong.play();
-
-
-      if (playPromise !== undefined) {
-
-        playPromise.catch(() => {
-
-          /*
-            Browser blocked autoplay.
-            We do NOT display a mute/unmute button.
-            Once she touches the page, playback starts.
-          */
-
-        });
-
-      }
-    }
-
-
-    /*
-      First attempt immediately on page load.
-    */
-
-    window.addEventListener(
-      "load",
-      startBirthdaySong
-    );
-
-
-    /*
-      If autoplay was blocked,
-      start it on the first interaction.
-      No button is shown.
-    */
-
-    ["click", "touchstart", "keydown"].forEach(
-      eventName => {
-
-        document.addEventListener(
-          eventName,
-          () => {
-
-            if (birthdaySong.paused) {
-              startBirthdaySong();
-            }
-
-          },
-          { once: false }
-        );
-
-      }
-    );
 
   </script>
 
