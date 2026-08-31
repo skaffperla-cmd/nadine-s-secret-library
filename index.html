@@ -426,10 +426,10 @@
 
     <!-- INTERACTIVE DESK BOOKS -->
     <div class="desk-scene">
-      <div class="interactive-book" onclick="openEgg('Rules of the Library:\n\n1. Do not open anything before October 17.\n2. Rule #1 still applies.\n3. Stop looking for loopholes.\n4. Fine. You can have hot chocolate. ☕')">
+      <div class="interactive-book" onclick="openEgg('Rules of the Library:\n\n1. Do not open anything before October 17.\n2. Rule #1 still applies.\n3. Listen to Rule #2.')">
         <span class="book-title">📜 The Rules</span>
       </div>
-      <div class="interactive-book" onclick="openEgg('The Book of Things I Never Told You:\n\nNot yet. 🕯️')">
+      <div class="interactive-book" onclick="openEgg('Not yet. 🕯️')">
         <span class="book-title">📖 Secret Book</span>
       </div>
       <div class="interactive-book" onclick="openEgg('A Very Important Book:\n\nIt is currently being very important somewhere else. 🦉')">
@@ -516,23 +516,6 @@
       document.getElementById("dispEmail").innerText = atob(_e);
       document.getElementById("dispPass").innerText = atob(_p);
     }
-
-    // TRIPLE-CLICK OWL FOR TESTING PREVIEW
-    let clicks = 0;
-    document.getElementById("owlTrigger").addEventListener("click", () => {
-      clicks++;
-      if (clicks === 3) {
-        clicks = 0;
-        const locked = document.getElementById("lockedState");
-        if (locked.style.display === "none") {
-          locked.style.display = "block";
-          document.getElementById("unlockedState").style.display = "none";
-        } else {
-          unlockLibrary();
-        }
-      }
-      setTimeout(() => clicks = 0, 1000);
-    });
 
     // EASTER EGG MODAL
     function openEgg(text) {
