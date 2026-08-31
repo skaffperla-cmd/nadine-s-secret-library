@@ -3,433 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Secret Library — Nadine's Birthday</title>
-  <style>
-    :root {
-      --bg-dark: #0d0805;
-      --wood-dark: #1a100a;
-      --accent-amber: #d48828;
-      --accent-gold: #e5b35c;
-      --parchment: #ede2cf;
-      --text-muted: #a69076;
-      --font-serif: "Cinzel", "Georgia", "Times New Roman", serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--parchment);
-      font-family: var(--font-serif);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Ambient Canvas Background */
-    canvas#particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Library Vignette Header & Structure */
-    .header {
-      width: 100%;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      background: linear-gradient(to bottom, rgba(13, 8, 5, 0.9), transparent);
-    }
-
-    .header-nav {
-      display: flex;
-      gap: 20px;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    .owl-icon {
-      font-size: 1.8rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(229, 179, 92, 0.4));
-    }
-
-    .owl-icon:hover {
-      transform: scale(1.1);
-    }
-
-    .access-badge {
-      border: 1px solid var(--accent-amber);
-      padding: 6px 14px;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      color: var(--accent-gold);
-      border-radius: 4px;
-      background: rgba(26, 16, 10, 0.6);
-    }
-
-    /* Main Container */
-    .container {
-      z-index: 10;
-      width: 90%;
-      max-width: 650px;
-      margin: 40px auto;
-      text-align: center;
-      background: rgba(20, 12, 7, 0.85);
-      border: 1px solid rgba(229, 179, 92, 0.25);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(212, 136, 40, 0.1);
-      padding: 40px 30px;
-      border-radius: 8px;
-      backdrop-filter: blur(5px);
-      position: relative;
-    }
-
-    .lock-symbol {
-      font-size: 1.8rem;
-      color: var(--accent-amber);
-      margin-bottom: 15px;
-      display: inline-block;
-      animation: pulseGlow 3s infinite ease-in-out;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px var(--accent-amber)); }
-      50% { opacity: 1; filter: drop-shadow(0 0 10px var(--accent-gold)); }
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      letter-spacing: 4px;
-      color: var(--accent-gold);
-      margin-bottom: 10px;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
-
-    p.subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 25px;
-    }
-
-    .target-date {
-      font-size: 1.3rem;
-      letter-spacing: 5px;
-      color: var(--parchment);
-      margin: 15px 0;
-    }
-
-    /* Countdown Grid */
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 30px 0;
-    }
-
-    .time-box {
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      padding: 15px 5px;
-      background: rgba(13, 8, 5, 0.6);
-      border-radius: 4px;
-    }
-
-    .time-box .num {
-      font-size: 1.6rem;
-      color: var(--accent-gold);
-      display: block;
-      font-weight: 600;
-    }
-
-    .time-box .label {
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 5px;
-      display: block;
-    }
-
-    /* Interactive Books */
-    .shelf-section {
-      margin-top: 30px;
-      border-top: 1px solid rgba(229, 179, 92, 0.2);
-      padding-top: 25px;
-    }
-
-    .shelf-title {
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--text-muted);
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
-
-    .book-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .book-btn {
-      background: rgba(35, 20, 12, 0.8);
-      border: 1px solid rgba(212, 136, 40, 0.3);
-      color: var(--parchment);
-      padding: 12px 18px;
-      font-family: var(--font-serif);
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-radius: 4px;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .book-btn:hover {
-      border-color: var(--accent-gold);
-      background: rgba(50, 28, 16, 0.9);
-      box-shadow: 0 0 12px rgba(229, 179, 92, 0.2);
-    }
-
-    .book-btn.locked-book {
-      border-color: var(--accent-gold);
-      background: rgba(60, 35, 18, 0.9);
-      font-weight: 600;
-    }
-
-    /* Reveal Section */
-    .reveal-box {
-      display: none;
-      background: rgba(25, 15, 9, 0.95);
-      border: 2px solid var(--accent-gold);
-      padding: 30px;
-      border-radius: 6px;
-      margin-top: 20px;
-      box-shadow: 0 0 30px rgba(229, 179, 92, 0.3);
-    }
-
-    .credential-field {
-      margin: 20px 0;
-      text-align: left;
-      background: rgba(13, 8, 5, 0.8);
-      padding: 12px 16px;
-      border: 1px solid rgba(229, 179, 92, 0.3);
-      border-radius: 4px;
-    }
-
-    .field-label {
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      color: var(--accent-amber);
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .field-value {
-      font-size: 1.1rem;
-      color: var(--parchment);
-      letter-spacing: 1px;
-      font-family: monospace;
-    }
-
-    .action-btn {
-      background: var(--accent-amber);
-      color: var(--bg-dark);
-      border: none;
-      padding: 14px 28px;
-      font-family: var(--font-serif);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      margin-top: 15px;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .action-btn:hover {
-      background: var(--accent-gold);
-      box-shadow: 0 0 15px var(--accent-gold);
-    }
-
-    /* Footer */
-    .footer {
-      z-index: 10;
-      padding: 20px;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    /* Modal Toast */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--wood-dark);
-      border: 1px solid var(--accent-gold);
-      color: var(--parchment);
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 100;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (max-width: 600px) {
-      .container { width: 92%; padding: 25px 18px; }
-      h1 { font-size: 1.3rem; }
-      .countdown-grid { gap: 6px; }
-      .time-box .num { font-size: 1.2rem; }
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-  <canvas id="particles"></canvas>
-
-  <div class="header">
-    <div class="header-nav">
-      <span>THE LIBRARY</span>
-    </div>
-    <div class="owl-icon" id="owlToggle" title="Library Emblem">🦉</div>
-    <div class="access-badge">17 OCT 2026</div>
-  </div>
-
-  <div class="container" id="mainCard">
-    <div id="lockedState">
-      <div class="lock-symbol">🔒</div>
-      <h1>THE LIBRARY IS CURRENTLY CLOSED</h1>
-      <p class="subtitle">Some stories aren’t meant to be read early.</p>
-      
-      <div class="target-date">17 OCTOBER 2026</div>
-
-      <div class="countdown-grid">
-        <div class="time-box"><span class="num" id="days">00</span><span class="label">Days</span></div>
-        <div class="time-box"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
-        <div class="time-box"><span class="num" id="mins">00</span><span class="label">Minutes</span></div>
-        <div class="time-box"><span class="num" id="secs">00</span><span class="label">Seconds</span></div>
-      </div>
-
-      <div class="shelf-section">
-        <div class="shelf-title">Library Archives</div>
-        <div class="book-list">
-          <button class="book-btn locked-book" onclick="triggerBook('NADINE — VOLUME I')">
-            <span>📖 NADINE — VOLUME I</span>
-            <span>🔒</span>
-          </button>
-          <button class="book-btn" onclick="triggerBook('THE BOOK OF THINGS I NEVER TOLD YOU')">
-            <span>📚 THE BOOK OF THINGS I NEVER TOLD YOU</span>
-          </button>
-          <button class="book-btn" onclick="triggerBook('RULES OF THE LIBRARY')">
-            <span>📜 RULES OF THE LIBRARY</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal-box" id="unlockedState">
-      <div style="font-size: 2rem; margin-bottom: 10px;">✨</div>
-      <h1>WELCOME BACK, NADINE</h1>
-      <p class="subtitle">The library is open. You’ve waited long enough.</p>
-      
-      <p style="font-size: 0.95rem; margin: 20px 0; line-height: 1.6;">
-        For the past year, I’ve been secretly writing to you... <br>Your mailbox awaits. 🤍
-      </p>
-
-      <div class="credential-field">
-        <span class="field-label">EMAIL ADDRESS</span>
-        <span class="field-value" id="emailVal">dear.nadine@hotmail.com</span>
-      </div>
-
-      <div class="credential-field">
-        <span class="field-label">PASSWORD</span>
-        <span class="field-value" id="passVal">Happybirthday</span>
-      </div>
-
-      <a href="https://outlook.live.com/" target="_blank" class="action-btn">ENTER THE MAILBOX</a>
-    </div>
-  </div>
-
-  <div class="footer">
-    ✦ A SECRET IS WORTH WAITING FOR ✦
-  </div>
-
-  <div class="toast" id="toastMsg">Message goes here</div>
-
-  <script>
-    // Target Date: Oct 17, 2026 00:00:00
-    const targetDate = new Date('October 17, 2026 00:00:00').getTime();
-    let overrideUnlock = false;
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0 || overrideUnlock) {
-        document.getElementById('lockedState').style.display = 'none';
-        document.getElementById('unlockedState').style.display = 'block';
-        return;
-      }
-
-      document.getElementById('lockedState').style.display = 'block';
-      document.getElementById('unlockedState').style.display = 'none';
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance %Here is the complete code. 
-
-### How to put it on GitHub:
-1. When creating your repository on GitHub, name your repository something simple like **`nadine-secret-library`**. (You can leave the "Description" box blank).
-2. Once the repository is created, click **"uploading an existing file"** or **"creating a new file"**.
-3. Name the file **`index.html`**.
-4. Paste the code below inside the main text box.
-5. Click **Commit changes**.
-
-***
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nadine's Secret Library</title>
   <style>
     :root {
@@ -464,18 +37,21 @@
       position: relative;
     }
 
-    /* Background overlay & ambience */
+    /* Background overlay & ambience with uploaded background image */
     .library-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: 
+      background-image: 
         radial-gradient(circle at 50% 30%, rgba(255, 140, 0, 0.12) 0%, transparent 60%),
         radial-gradient(circle at 10% 80%, rgba(229, 169, 60, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.08) 0%, transparent 50%),
-        linear-gradient(to bottom, #070403, var(--espresso));
+        url('713F0475-AD44-4D0C-A6FC-27055D582A82.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       z-index: -2;
     }
 
@@ -666,7 +242,7 @@
     }
 
     .interactive-book:hover {
-      transform: translateY(-5deg);
+      transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(229, 169, 60, 0.25);
       border-color: var(--amber-gold);
     }
@@ -787,6 +363,9 @@
 </head>
 <body>
 
+  <!-- Audio element playing sound.mp3 -->
+  <audio id="bgMusic" src="sound.mp3" autoplay loop></audio>
+
   <div class="library-bg"></div>
   <canvas id="particles"></canvas>
 
@@ -797,7 +376,6 @@
     </div>
     <div class="owl-crest" id="owlTrigger" title="Secret Library Crest">🦉</div>
     <div class="header-right">
-      <button class="icon-btn" id="audioToggle">🔊 Audio</button>
       <button class="icon-btn" id="qrBtn">📱 QR</button>
       <div class="access-tag">17 OCT 2026</div>
     </div>
@@ -843,7 +421,7 @@
         </div>
       </div>
 
-      <a href="[https://outlook.live.com/](https://outlook.live.com/)" target="_blank" class="btn-action">Enter the Mailbox</a>
+      <a href="https://outlook.live.com/" target="_blank" class="btn-action">Enter the Mailbox</a>
     </div>
 
     <!-- INTERACTIVE DESK BOOKS -->
@@ -880,8 +458,26 @@
     </div>
   </div>
 
-  <script src="[https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js](https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js)"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
+    // AUTOMATIC AUDIO PLAYBACK HANDLER
+    const bgMusic = document.getElementById("bgMusic");
+    
+    function startMusic() {
+      bgMusic.play().then(() => {
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+      }).catch(() => {
+        // Autoplay blocked by browser policy until user interaction
+      });
+    }
+
+    window.addEventListener("load", () => {
+      startMusic();
+      document.addEventListener('click', startMusic);
+      document.addEventListener('touchstart', startMusic);
+    });
+
     // CREDENTIALS (OBFUSCATED)
     const _e = "ZGVhci5uYWRpbmVAaG90bWFpbC5jb20=";
     const _p = "SGFwcHliaXJ0aGRheQ==";
@@ -1000,45 +596,6 @@
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
-
-    // AUDIO AMBIENCE (SYNTHESIZED RAIN)
-    let audioCtx, isPlaying = false;
-    document.getElementById("audioToggle").addEventListener("click", () => {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const bufferSize = audioCtx.sampleRate * 2;
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-        const whiteNoise = audioCtx.createBufferSource();
-        whiteNoise.buffer = noiseBuffer;
-        whiteNoise.loop = true;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.value = 800;
-
-        const gain = audioCtx.createGain();
-        gain.gain.value = 0.05;
-
-        whiteNoise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-        whiteNoise.start();
-        isPlaying = true;
-        document.getElementById("audioToggle").innerText = "🔇 Mute";
-      } else {
-        if (audioCtx.state === "suspended") {
-          audioCtx.resume();
-          document.getElementById("audioToggle").innerText = "🔇 Mute";
-        } else if (audioCtx.state === "running") {
-          audioCtx.suspend();
-          document.getElementById("audioToggle").innerText = "🔊 Audio";
-        }
-      }
-    });
   </script>
 </body>
 </html>
