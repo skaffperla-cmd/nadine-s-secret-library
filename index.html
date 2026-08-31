@@ -35,6 +35,7 @@
       position: relative;
     }
 
+    /* Ambient Canvas Background */
     canvas#particles {
       position: fixed;
       top: 0;
@@ -45,6 +46,7 @@
       z-index: 1;
     }
 
+    /* Library Vignette Header & Structure */
     .header {
       width: 100%;
       padding: 20px 30px;
@@ -85,6 +87,7 @@
       background: rgba(26, 16, 10, 0.6);
     }
 
+    /* Main Container */
     .container {
       z-index: 10;
       width: 90%;
@@ -136,6 +139,7 @@
       margin: 15px 0;
     }
 
+    /* Countdown Grid */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -166,6 +170,7 @@
       display: block;
     }
 
+    /* Interactive Books */
     .shelf-section {
       margin-top: 30px;
       border-top: 1px solid rgba(229, 179, 92, 0.2);
@@ -215,6 +220,7 @@
       font-weight: 600;
     }
 
+    /* Reveal Section */
     .reveal-box {
       display: none;
       background: rgba(25, 15, 9, 0.95);
@@ -272,6 +278,7 @@
       box-shadow: 0 0 15px var(--accent-gold);
     }
 
+    /* Footer */
     .footer {
       z-index: 10;
       padding: 20px;
@@ -281,6 +288,7 @@
       text-transform: uppercase;
     }
 
+    /* Modal Toast */
     .toast {
       position: fixed;
       bottom: 30px;
@@ -309,10 +317,8 @@
       .time-box .num { font-size: 1.2rem; }
     }
   </style>
-
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
   <canvas id="particles"></canvas>
@@ -321,484 +327,718 @@
     <div class="header-nav">
       <span>THE LIBRARY</span>
     </div>
-
     <div class="owl-icon" id="owlToggle" title="Library Emblem">🦉</div>
-
     <div class="access-badge">17 OCT 2026</div>
   </div>
 
   <div class="container" id="mainCard">
-
     <div id="lockedState">
-
       <div class="lock-symbol">🔒</div>
-
       <h1>THE LIBRARY IS CURRENTLY CLOSED</h1>
-
-      <p class="subtitle">
-        Some stories aren’t meant to be read early.
-      </p>
-
-      <div class="target-date">
-        17 OCTOBER 2026
-      </div>
+      <p class="subtitle">Some stories aren’t meant to be read early.</p>
+      
+      <div class="target-date">17 OCTOBER 2026</div>
 
       <div class="countdown-grid">
-
-        <div class="time-box">
-          <span class="num" id="days">00</span>
-          <span class="label">Days</span>
-        </div>
-
-        <div class="time-box">
-          <span class="num" id="hours">00</span>
-          <span class="label">Hours</span>
-        </div>
-
-        <div class="time-box">
-          <span class="num" id="mins">00</span>
-          <span class="label">Minutes</span>
-        </div>
-
-        <div class="time-box">
-          <span class="num" id="secs">00</span>
-          <span class="label">Seconds</span>
-        </div>
-
+        <div class="time-box"><span class="num" id="days">00</span><span class="label">Days</span></div>
+        <div class="time-box"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
+        <div class="time-box"><span class="num" id="mins">00</span><span class="label">Minutes</span></div>
+        <div class="time-box"><span class="num" id="secs">00</span><span class="label">Seconds</span></div>
       </div>
 
       <div class="shelf-section">
-
-        <div class="shelf-title">
-          Library Archives
-        </div>
-
+        <div class="shelf-title">Library Archives</div>
         <div class="book-list">
-
-          <button class="book-btn locked-book"
-            onclick="triggerBook('NADINE — VOLUME I')">
-
+          <button class="book-btn locked-book" onclick="triggerBook('NADINE — VOLUME I')">
             <span>📖 NADINE — VOLUME I</span>
             <span>🔒</span>
-
           </button>
-
-          <button class="book-btn"
-            onclick="triggerBook('THE BOOK OF THINGS I NEVER TOLD YOU')">
-
+          <button class="book-btn" onclick="triggerBook('THE BOOK OF THINGS I NEVER TOLD YOU')">
             <span>📚 THE BOOK OF THINGS I NEVER TOLD YOU</span>
-
           </button>
-
-          <button class="book-btn"
-            onclick="triggerBook('RULES OF THE LIBRARY')">
-
+          <button class="book-btn" onclick="triggerBook('RULES OF THE LIBRARY')">
             <span>📜 RULES OF THE LIBRARY</span>
-
           </button>
-
         </div>
-
       </div>
-
     </div>
-
 
     <div class="reveal-box" id="unlockedState">
-
-      <div style="font-size: 2rem; margin-bottom: 10px;">
-        ✨
-      </div>
-
+      <div style="font-size: 2rem; margin-bottom: 10px;">✨</div>
       <h1>WELCOME BACK, NADINE</h1>
-
-      <p class="subtitle">
-        The library is open. You’ve waited long enough.
-      </p>
-
+      <p class="subtitle">The library is open. You’ve waited long enough.</p>
+      
       <p style="font-size: 0.95rem; margin: 20px 0; line-height: 1.6;">
-        For the past year, I’ve been secretly writing to you...
-        <br>
-        Your mailbox awaits. 🤍
+        For the past year, I’ve been secretly writing to you... <br>Your mailbox awaits. 🤍
       </p>
 
       <div class="credential-field">
-
-        <span class="field-label">
-          EMAIL ADDRESS
-        </span>
-
-        <span class="field-value" id="emailVal">
-          dear.nadine@hotmail.com
-        </span>
-
+        <span class="field-label">EMAIL ADDRESS</span>
+        <span class="field-value" id="emailVal">dear.nadine@hotmail.com</span>
       </div>
 
       <div class="credential-field">
-
-        <span class="field-label">
-          PASSWORD
-        </span>
-
-        <span class="field-value" id="passVal">
-          Happybirthday
-        </span>
-
+        <span class="field-label">PASSWORD</span>
+        <span class="field-value" id="passVal">Happybirthday</span>
       </div>
 
-      <a href="https://outlook.live.com/"
-         target="_blank"
-         class="action-btn">
-        ENTER THE MAILBOX
-      </a>
-
+      <a href="https://outlook.live.com/" target="_blank" class="action-btn">ENTER THE MAILBOX</a>
     </div>
-
   </div>
 
   <div class="footer">
     ✦ A SECRET IS WORTH WAITING FOR ✦
   </div>
 
-  <div class="toast" id="toastMsg">
-    Message goes here
-  </div>
-
-
-  <!-- YOUR SONG -->
-  <audio id="birthdaySong" src="sound.mp3" autoplay loop preload="auto"></audio>
-
+  <div class="toast" id="toastMsg">Message goes here</div>
 
   <script>
-
-    // ==========================================
-    // SONG
-    // ==========================================
-
-    const birthdaySong = document.getElementById("birthdaySong");
-
-    birthdaySong.volume = 1.0;
-
-    // Try to start the song immediately.
-    // Some browsers may block autoplay until the first
-    // interaction with the page.
-    window.addEventListener("load", () => {
-
-      birthdaySong.play().catch(() => {
-
-        // If the browser blocks autoplay, try again
-        // after the first interaction anywhere on the page.
-        const startSong = () => {
-
-          birthdaySong.play().catch(() => {});
-
-          document.removeEventListener("click", startSong);
-          document.removeEventListener("touchstart", startSong);
-        };
-
-        document.addEventListener("click", startSong, { once: true });
-        document.addEventListener("touchstart", startSong, { once: true });
-
-      });
-
-    });
-
-
-    // ==========================================
-    // COUNTDOWN
-    // ==========================================
-
-    const targetDate =
-      new Date("October 17, 2026 00:00:00").getTime();
-
+    // Target Date: Oct 17, 2026 00:00:00
+    const targetDate = new Date('October 17, 2026 00:00:00').getTime();
+    let overrideUnlock = false;
 
     function updateCountdown() {
-
       const now = new Date().getTime();
-
       const distance = targetDate - now;
 
-
-      if (distance <= 0) {
-
-        unlockLibrary();
-
+      if (distance <= 0 || overrideUnlock) {
+        document.getElementById('lockedState').style.display = 'none';
+        document.getElementById('unlockedState').style.display = 'block';
         return;
-
       }
 
+      document.getElementById('lockedState').style.display = 'block';
+      document.getElementById('unlockedState').style.display = 'none';
 
-      const days =
-        Math.floor(
-          distance / (1000 * 60 * 60 * 24)
-        );
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance %Here is the complete code. 
 
+### How to put it on GitHub:
+1. When creating your repository on GitHub, name your repository something simple like **`nadine-secret-library`**. (You can leave the "Description" box blank).
+2. Once the repository is created, click **"uploading an existing file"** or **"creating a new file"**.
+3. Name the file **`index.html`**.
+4. Paste the code below inside the main text box.
+5. Click **Commit changes**.
 
-      const hours =
-        Math.floor(
-          (distance % (1000 * 60 * 60 * 24))
-          / (1000 * 60 * 60)
-        );
+***
 
-
-      const minutes =
-        Math.floor(
-          (distance % (1000 * 60 * 60))
-          / (1000 * 60)
-        );
-
-
-      const seconds =
-        Math.floor(
-          (distance % (1000 * 60))
-          / 1000
-        );
-
-
-      document.getElementById("days").innerText =
-        String(days).padStart(2, "0");
-
-      document.getElementById("hours").innerText =
-        String(hours).padStart(2, "0");
-
-      document.getElementById("mins").innerText =
-        String(minutes).padStart(2, "0");
-
-      document.getElementById("secs").innerText =
-        String(seconds).padStart(2, "0");
-
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nadine's Secret Library</title>
+  <style>
+    :root {
+      --bg-dark: #0d0705;
+      --espresso: #1a0f0a;
+      --wood-dark: #2a160e;
+      --amber-gold: #e5a93c;
+      --warm-glow: #ff8c00;
+      --parchment: #f4e8c1;
+      --parchment-dark: #d5c396;
+      --text-muted: #a68c70;
+      --accent-red: #7a1c1c;
+      --border-gold: rgba(229, 169, 60, 0.3);
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--parchment);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Background overlay & ambience */
+    .library-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(255, 140, 0, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(229, 169, 60, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.08) 0%, transparent 50%),
+        linear-gradient(to bottom, #070403, var(--espresso));
+      z-index: -2;
+    }
+
+    canvas#particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navigation / Header */
+    header {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-gold);
+      margin-bottom: 20px;
+    }
+
+    .nav-links {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      display: flex;
+      gap: 20px;
+    }
+
+    .owl-crest {
+      cursor: pointer;
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 8px rgba(229, 169, 60, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .owl-crest:hover {
+      transform: scale(1.1);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .access-tag {
+      font-size: 0.75rem;
+      border: 1px solid var(--border-gold);
+      padding: 5px 12px;
+      border-radius: 4px;
+      background: rgba(26, 15, 10, 0.6);
+      color: var(--amber-gold);
+      letter-spacing: 1px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: 1px solid var(--border-gold);
+      color: var(--amber-gold);
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* Main Container */
+    main {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .status-panel {
+      background: rgba(26, 15, 10, 0.85);
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(229, 169, 60, 0.1);
+      padding: 35px 25px;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 30px;
+      backdrop-filter: blur(5px);
+    }
+
+    .lock-icon {
+      font-size: 1.5rem;
+      color: var(--amber-gold);
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      color: var(--parchment);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .date-target {
+      font-size: 1.4rem;
+      color: var(--amber-gold);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    /* Countdown Grid */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .count-box {
+      border: 1px solid var(--border-gold);
+      background: rgba(13, 7, 5, 0.7);
+      padding: 12px 18px;
+      border-radius: 6px;
+      min-width: 75px;
+    }
+
+    .count-number {
+      font-size: 1.8rem;
+      color: var(--parchment);
+      font-weight: bold;
+      display: block;
+    }
+
+    .count-label {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .countdown-footer {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-top: 15px;
+      text-transform: uppercase;
+    }
+
+    /* Interactive Desk / Books Scene */
+    .desk-scene {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .interactive-book {
+      background: linear-gradient(135deg, var(--wood-dark), var(--espresso));
+      border: 1px solid var(--border-gold);
+      padding: 18px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      flex: 1 1 200px;
+      max-width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .interactive-book:hover {
+      transform: translateY(-5deg);
+      box-shadow: 0 8px 25px rgba(229, 169, 60, 0.25);
+      border-color: var(--amber-gold);
+    }
+
+    .book-title {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: var(--parchment);
+      text-transform: uppercase;
+    }
+
+    /* Reveal Screen Styles (Unlocked) */
+    .unlocked-content {
+      display: none;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .credentials-box {
+      background: rgba(13, 7, 5, 0.9);
+      border: 2px solid var(--amber-gold);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 25px 0;
+      text-align: left;
+    }
+
+    .cred-row {
+      margin-bottom: 15px;
+    }
+
+    .cred-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .cred-value {
+      font-size: 1.2rem;
+      color: var(--amber-gold);
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+
+    .btn-action {
+      background: var(--amber-gold);
+      color: var(--bg-dark);
+      border: none;
+      padding: 14px 28px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-action:hover {
+      background: #ffc15e;
+    }
+
+    /* Modal Popups */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: var(--espresso);
+      border: 1px solid var(--amber-gold);
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 30px;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="library-bg"></div>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <div class="nav-links">
+      <span>Library</span>
+      <span>Collection</span>
+    </div>
+    <div class="owl-crest" id="owlTrigger" title="Secret Library Crest">🦉</div>
+    <div class="header-right">
+      <button class="icon-btn" id="audioToggle">🔊 Audio</button>
+      <button class="icon-btn" id="qrBtn">📱 QR</button>
+      <div class="access-tag">17 OCT 2026</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- LOCKED SCREEN STATE -->
+    <div class="status-panel" id="lockedState">
+      <div class="lock-icon">🔒</div>
+      <h1>The Library is Currently Closed</h1>
+      <p class="subtitle">Some stories aren’t meant to be read early.</p>
+      <div class="date-target">17 OCTOBER 2026</div>
+
+      <div class="countdown-container">
+        <div class="count-box"><span class="count-number" id="days">00</span><span class="count-label">Days</span></div>
+        <div class="count-box"><span class="count-number" id="hours">00</span><span class="count-label">Hours</span></div>
+        <div class="count-box"><span class="count-number" id="mins">00</span><span class="count-label">Minutes</span></div>
+        <div class="count-box"><span class="count-number" id="secs">00</span><span class="count-label">Seconds</span></div>
+      </div>
+
+      <div class="countdown-footer">Come back when the library opens.</div>
+    </div>
+
+    <!-- UNLOCKED BIRTHDAY STATE -->
+    <div class="status-panel unlocked-content" id="unlockedState">
+      <div class="lock-icon" style="color: #4caf50;">📖</div>
+      <h1>Welcome Back, Nadine</h1>
+      <p class="subtitle">The library is open. You’ve waited long enough.</p>
+      
+      <p style="margin: 20px 0; line-height: 1.6; color: var(--parchment-dark);">
+        Happy Birthday, Nadine! 🤍<br>
+        For the past year, I’ve been secretly writing letters to you. Your mailbox awaits.
+      </p>
+
+      <div class="credentials-box">
+        <div class="cred-row">
+          <span class="cred-label">Mailbox Address</span>
+          <span class="cred-value" id="dispEmail">...</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Secret Password</span>
+          <span class="cred-value" id="dispPass">...</span>
+        </div>
+      </div>
+
+      <a href="[https://outlook.live.com/](https://outlook.live.com/)" target="_blank" class="btn-action">Enter the Mailbox</a>
+    </div>
+
+    <!-- INTERACTIVE DESK BOOKS -->
+    <div class="desk-scene">
+      <div class="interactive-book" onclick="openEgg('Rules of the Library:\n\n1. Do not open anything before October 17.\n2. Rule #1 still applies.\n3. Stop looking for loopholes.\n4. Fine. You can have hot chocolate. ☕')">
+        <span class="book-title">📜 The Rules</span>
+      </div>
+      <div class="interactive-book" onclick="openEgg('The Book of Things I Never Told You:\n\nNot yet. 🕯️')">
+        <span class="book-title">📖 Secret Book</span>
+      </div>
+      <div class="interactive-book" onclick="openEgg('A Very Important Book:\n\nIt is currently being very important somewhere else. 🦉')">
+        <span class="book-title">✨ Volume I</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>✦ A SECRET IS WORTH WAITING FOR ✦</footer>
+
+  <!-- MODAL FOR EASTER EGGS -->
+  <div class="modal-overlay" id="eggModal">
+    <div class="modal-card">
+      <span class="modal-close" onclick="closeModal('eggModal')">&times;</span>
+      <p id="eggText" style="white-space: pre-line; line-height: 1.6; color: var(--parchment);"></p>
+    </div>
+  </div>
+
+  <!-- MODAL FOR QR CODE GENERATOR -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card">
+      <span class="modal-close" onclick="closeModal('qrModal')">&times;</span>
+      <h3 style="color: var(--amber-gold); margin-bottom: 15px;">Your Website QR Code</h3>
+      <div id="qrContainer" style="background: white; padding: 15px; display: inline-block; border-radius: 4px; margin-bottom: 15px;"></div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px;">Print this QR code and put it inside her physical birthday gift box!</p>
+    </div>
+  </div>
+
+  <script src="[https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js](https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js)"></script>
+  <script>
+    // CREDENTIALS (OBFUSCATED)
+    const _e = "ZGVhci5uYWRpbmVAaG90bWFpbC5jb20=";
+    const _p = "SGFwcHliaXJ0aGRheQ==";
+
+    // TARGET DATE: OCT 17, 2026 00:00:00
+    const targetDate = new Date("October 17, 2026 00:00:00").getTime();
+
+    // COUNTDOWN LOGIC
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        unlockLibrary();
+        return;
+      }
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(d).padStart(2, '0');
+      document.getElementById("hours").innerText = String(h).padStart(2, '0');
+      document.getElementById("mins").innerText = String(m).padStart(2, '0');
+      document.getElementById("secs").innerText = String(s).padStart(2, '0');
+    }
 
     setInterval(updateCountdown, 1000);
-
     updateCountdown();
 
-
-    // ==========================================
-    // UNLOCK
-    // ==========================================
-
     function unlockLibrary() {
-
-      document.getElementById("lockedState").style.display =
-        "none";
-
-
-      const unlocked =
-        document.getElementById("unlockedState");
-
-
-      unlocked.style.display =
-        "block";
-
-
-      document.getElementById("emailVal").innerText =
-        "dear.nadine@hotmail.com";
-
-
-      document.getElementById("passVal").innerText =
-        "Happybirthday";
-
+      document.getElementById("lockedState").style.display = "none";
+      const unlocked = document.getElementById("unlockedState");
+      unlocked.style.display = "block";
+      document.getElementById("dispEmail").innerText = atob(_e);
+      document.getElementById("dispPass").innerText = atob(_p);
     }
 
-
-    // ==========================================
-    // OWL TRIPLE CLICK
-    // ==========================================
-
-    // Kept exactly as in your original code.
-
+    // TRIPLE-CLICK OWL FOR TESTING PREVIEW
     let clicks = 0;
-
-
-    document
-      .getElementById("owlToggle")
-      .addEventListener("click", () => {
-
-        clicks++;
-
-
-        if (clicks === 3) {
-
-          clicks = 0;
-
-
-          const locked =
-            document.getElementById("lockedState");
-
-
-          if (locked.style.display === "none") {
-
-            locked.style.display =
-              "block";
-
-
-            document.getElementById("unlockedState")
-              .style.display = "none";
-
-          } else {
-
-            unlockLibrary();
-
-          }
-
+    document.getElementById("owlTrigger").addEventListener("click", () => {
+      clicks++;
+      if (clicks === 3) {
+        clicks = 0;
+        const locked = document.getElementById("lockedState");
+        if (locked.style.display === "none") {
+          locked.style.display = "block";
+          document.getElementById("unlockedState").style.display = "none";
+        } else {
+          unlockLibrary();
         }
+      }
+      setTimeout(() => clicks = 0, 1000);
+    });
 
-
-        setTimeout(() => clicks = 0, 1000);
-
-      });
-
-
-    // ==========================================
-    // BOOK FUNCTION
-    // ==========================================
-
-    function triggerBook(bookName) {
-
-      document.getElementById("toastMsg").innerText =
-        bookName + " is currently locked.";
-
-      document.getElementById("toastMsg")
-        .classList.add("show");
-
-
-      setTimeout(() => {
-
-        document.getElementById("toastMsg")
-          .classList.remove("show");
-
-      }, 2500);
-
+    // EASTER EGG MODAL
+    function openEgg(text) {
+      document.getElementById("eggText").innerText = text;
+      document.getElementById("eggModal").style.display = "flex";
     }
 
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
 
-    // ==========================================
-    // PARTICLES
-    // ==========================================
+    // QR CODE GENERATOR
+    document.getElementById("qrBtn").addEventListener("click", () => {
+      const container = document.getElementById("qrContainer");
+      container.innerHTML = "";
+      new QRCode(container, {
+        text: window.location.href,
+        width: 180,
+        height: 180,
+        colorDark: "#000000",
+        colorLight: "#ffffff"
+      });
+      document.getElementById("qrModal").style.display = "flex";
+    });
 
-    const canvas =
-      document.getElementById("particles");
-
-
-    const ctx =
-      canvas.getContext("2d");
-
+    // PARTICLE ANIMATION (FALLING LEAVES & SPARKS)
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
-
-      canvas.width =
-        window.innerWidth;
-
-      canvas.height =
-        window.innerHeight;
-
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-
-
-    window.addEventListener(
-      "resize",
-      resizeCanvas
-    );
-
-
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-
-    const particles =
-      Array.from({ length: 35 }, () => ({
-
-        x:
-          Math.random() *
-          canvas.width,
-
-        y:
-          Math.random() *
-          canvas.height,
-
-        size:
-          Math.random() * 4 + 2,
-
-        speedY:
-          Math.random() * 0.8 + 0.3,
-
-        speedX:
-          Math.random() * 0.4 - 0.2,
-
-        color:
-          Math.random() > 0.5
-            ? "rgba(229, 179, 92, "
-            : "rgba(212, 136, 40, ",
-
-        opacity:
-          Math.random() * 0.6 + 0.2
-
-      }));
-
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 4 + 2,
+      speedY: Math.random() * 0.8 + 0.3,
+      speedX: Math.random() * 0.4 - 0.2,
+      color: Math.random() > 0.5 ? "rgba(229, 169, 60, " : "rgba(210, 105, 30, ",
+      opacity: Math.random() * 0.6 + 0.2
+    }));
 
     function animateParticles() {
-
-      ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
-
         p.y += p.speedY;
-
         p.x += p.speedX;
+        if (p.y > canvas.height) p.y = 0;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.x < 0) p.x = canvas.width;
 
-
-        if (p.y > canvas.height)
-          p.y = 0;
-
-
-        if (p.x > canvas.width)
-          p.x = 0;
-
-
-        if (p.x < 0)
-          p.x = canvas.width;
-
-
-        ctx.fillStyle =
-          p.color +
-          p.opacity +
-          ")";
-
-
+        ctx.fillStyle = p.color + p.opacity + ")";
         ctx.beginPath();
-
-
-        ctx.arc(
-          p.x,
-          p.y,
-          p.size,
-          0,
-          Math.PI * 2
-        );
-
-
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-
       });
-
-
-      requestAnimationFrame(
-        animateParticles
-      );
-
+      requestAnimationFrame(animateParticles);
     }
-
-
     animateParticles();
 
-  </script>
+    // AUDIO AMBIENCE (SYNTHESIZED RAIN)
+    let audioCtx, isPlaying = false;
+    document.getElementById("audioToggle").addEventListener("click", () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const bufferSize = audioCtx.sampleRate * 2;
+        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+        const whiteNoise = audioCtx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        whiteNoise.loop = true;
 
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 800;
+
+        const gain = audioCtx.createGain();
+        gain.gain.value = 0.05;
+
+        whiteNoise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        whiteNoise.start();
+        isPlaying = true;
+        document.getElementById("audioToggle").innerText = "🔇 Mute";
+      } else {
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+          document.getElementById("audioToggle").innerText = "🔇 Mute";
+        } else if (audioCtx.state === "running") {
+          audioCtx.suspend();
+          document.getElementById("audioToggle").innerText = "🔊 Audio";
+        }
+      }
+    });
+  </script>
 </body>
 </html>
